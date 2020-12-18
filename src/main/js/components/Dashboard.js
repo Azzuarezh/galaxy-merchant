@@ -18,6 +18,8 @@ import Link from '@material-ui/core/Link';
 
 
 import Material from './Material';
+import UnitConverter from './UnitConverter';
+import CheckPrice from './CheckPrice';
 
 function Copyright() {
   return (
@@ -107,9 +109,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
+    height:300
   },
   fixedHeight: {
-    height: 240,
+    height: 300,
   },
 }));
 
@@ -127,7 +130,7 @@ export default function Dashboard(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+      <AppBar position="absolute" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
@@ -153,17 +156,17 @@ export default function Dashboard(props) {
                 <Material materials={props.materials}/>
               </Paper>
             </Grid>
-            {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={3}>
+            {/* Unit Converter */}
+            <Grid xs={12} md={5} lg={4}>
               <Paper className={fixedHeightPaper}>
-              
+                <UnitConverter/>
               </Paper>
             </Grid>
 
             {/* Chart */}
-            <Grid item xs={12} md={8} lg={9}>
+            <Grid item xs={12} md={8} lg={8}>
               <Paper className={fixedHeightPaper}>
-                
+                <CheckPrice/>
               </Paper>
             </Grid>
             

@@ -1,5 +1,8 @@
 package io.prospace.galaxymerchant.utils;
-
+/**
+ * @author azzuarezh
+ *
+ */
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -19,7 +22,7 @@ public class DatabaseLoader implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
+		// Create dummy static data
 		this.repository.save(
 				new Material("Silver", "A soft, white, lustrous transition metal, it exhibits the highest electrical conductivity, thermal conductivity, and reflectivity of any metal.",
 						17.0));

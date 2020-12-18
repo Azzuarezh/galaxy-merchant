@@ -1,5 +1,8 @@
 package io.prospace.galaxymerchant.repository.material;
-
+/**
+ * @author azzuarezh
+ *
+ */
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,6 +16,14 @@ public class Material {
 	private double price;
 	public String priceUnit ="Credits";
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public Material() {
 		// TODO Auto-generated constructor stub
 	}
