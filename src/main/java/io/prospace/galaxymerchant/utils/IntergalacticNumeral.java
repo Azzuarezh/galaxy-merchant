@@ -174,8 +174,9 @@ public class IntergalacticNumeral {
 	 * @return
 	 * @throws InvalidNumericException
 	 * @throws NullMaterialException 
+	 * @throws UnrecognizedStringException 
 	 */
-	public static Double Calculate(String romanQty, String material) throws InvalidNumericException, NullMaterialException {
+	public static Double Calculate(String romanQty, String material) throws InvalidNumericException, NullMaterialException, UnrecognizedStringException {
 		System.out.println("romanQty :" + romanQty +", material:" + material);
 		
 		Map<String,Object> materialMap = new HashMap<>();
@@ -195,8 +196,9 @@ public class IntergalacticNumeral {
 	 * @param romanQty
 	 * @return
 	 * @throws InvalidNumericException
+	 * @throws UnrecognizedStringException 
 	 */
-	public static double Calculate(String romanQty) throws InvalidNumericException {
+	public static double Calculate(String romanQty) throws InvalidNumericException, UnrecognizedStringException {
 		System.out.println("romanQty :" + romanQty );
 		return new Double(RomanNumeral.convertRomanTextToInt(IntergalacticNumeral.ConvertIntergatalacticToRoman(romanQty)));
 	}
@@ -208,8 +210,9 @@ public class IntergalacticNumeral {
 	 * @return
 	 * @throws InvalidNumericException
 	 * @throws NullMaterialException 
+	 * @throws UnrecognizedStringException 
 	 */
-	public static String Explain(String romanQty, String material) throws InvalidNumericException, NullMaterialException {
+	public static String Explain(String romanQty, String material) throws InvalidNumericException, NullMaterialException, UnrecognizedStringException {
 		System.out.println("romanQty :" + romanQty );
 		
 		Map<String,Object> materialMap = new HashMap<>();
@@ -228,8 +231,9 @@ public class IntergalacticNumeral {
 	 * @param romanQty
 	 * @return
 	 * @throws InvalidNumericException
+	 * @throws UnrecognizedStringException 
 	 */
-	public static String Explain(String romanQty) throws InvalidNumericException {
+	public static String Explain(String romanQty) throws InvalidNumericException, UnrecognizedStringException {
 		System.out.println("romanQty :" + romanQty );
 		return RomanNumeral.explanation(IntergalacticNumeral.ConvertIntergatalacticToRoman(romanQty));
 	}
@@ -239,8 +243,8 @@ public class IntergalacticNumeral {
 	 * @param intergalacticString the text to be converted to Romanian text
 	 * @return Romanian text format
 	 */
-	public static String ConvertIntergatalacticToRoman(String intergalacticString) {
-
+	public static String ConvertIntergatalacticToRoman(String intergalacticString) throws UnrecognizedStringException {
+		if(intergalacticString.isEmpty()) throw new UnrecognizedStringException("I have no Idea what you are talking about");
 		/* we will parse the text based on whitespace character */
 		String[] interGalacticSymbols = intergalacticString.split(" ");
 		

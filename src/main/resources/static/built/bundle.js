@@ -62157,31 +62157,35 @@ function CheckPrice(props) {
   };
 
   var handleQuery = function handleQuery() {
-    console.log('clicked!'); // Simple POST request with a JSON body using fetch
+    // check if input is not null
+    if (!input || input == '') {
+      alert('Please input the text field!');
+    } else {
+      // Simple POST request with a JSON body using fetch      
+      fetch('/api/calculate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: input
+      }).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        console.log('data:', data);
 
-    fetch('/api/calculate', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: input
-    }).then(function (response) {
-      return response.json();
-    }).then(function (data) {
-      console.log('data:', data);
-
-      if (data.status == 0) {
-        setResult(data.data);
-        setShown(true);
-      } else {
-        alert(data.data.error);
-        setResult({});
-        setShown(false);
-      }
-    })["catch"](function (error) {
-      alert("sorry, could not connect to server.");
-      console.log(error);
-    });
+        if (data.status == 0) {
+          setResult(data.data);
+          setShown(true);
+        } else {
+          alert(data.data.error);
+          setResult({});
+          setShown(false);
+        }
+      })["catch"](function (error) {
+        alert("sorry, could not connect to server.");
+        console.log(error);
+      });
+    }
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Title__WEBPACK_IMPORTED_MODULE_10__["default"], null, "Check your Items value"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "You can enquiry the value of intergalactic numeral to Roman/Numeric and also calculate the total price of materials. ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Please follow these example below:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "use ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("code", null, "how much is"), " followed by intergalactic symbols to convert to Roman/Numeric value"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "use ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("code", null, "how many credits is"), " followed by intergalactic symbols and material name "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "end the sentence with space and quotation mark ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("code", null, "?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "example using how much is : ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("code", null, "\"how much is pish tegj glob glob ?\""), " without quotes "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "example using how many credits is : ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("code", null, "\"how many credits is pish tegj glob glob silver ?\""), " without quotes ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_4__["default"], {

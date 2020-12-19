@@ -34,30 +34,35 @@ export default function CheckPrice (props) {
     }
 
     const handleQuery = () =>{
-      console.log('clicked!')
-      // Simple POST request with a JSON body using fetch
+     
+      // check if input is not null
+      if(!input || input == ''){
+        alert('Please input the text field!')
+      }else{
+      // Simple POST request with a JSON body using fetch      
+        fetch('/api/calculate',  {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: input
+        })
+            .then(response => response.json())
+            .then(data => {
+              console.log('data:', data)
+              if(data.status == 0){
+                setResult(data.data);
+                setShown(true);
+              }
+              else{
+                alert(data.data.error)
+                setResult({});
+                setShown(false);
+              }
+            }).catch(error =>{
+              alert("sorry, could not connect to server.")
+              console.log(error)
+            });
+      }
       
-      fetch('/api/calculate',  {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: input
-      })
-          .then(response => response.json())
-          .then(data => {
-            console.log('data:', data)
-            if(data.status == 0){
-              setResult(data.data);
-              setShown(true);
-            }
-            else{
-              alert(data.data.error)
-              setResult({});
-              setShown(false);
-            }
-          }).catch(error =>{
-            alert("sorry, could not connect to server.")
-            console.log(error)
-          });
     }
 
   return (

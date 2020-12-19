@@ -134,15 +134,15 @@ public class RomanNumeral {
 					}
 					
 					/* check if X only repeated 3 times */
-					if(currentSymbol == repeatedChar && repeated > 3) {
+					if(currentSymbol == repeatedChar && repeated == 3) {
 						isValid = false;
 						break;
 					}
 				}
 				/* check validation for L symbol */
 				else if( currentSymbol == CHAR_L) {
-					/* I can never being followed by L (IL is invalid) */
-					if(previousChar == CHAR_I) {
+					/* I can never being followed by L (IL/VL is invalid) */
+					if(previousChar == CHAR_I || previousChar == CHAR_V) {
 						isValid = false;
 						break;
 					}
@@ -162,8 +162,8 @@ public class RomanNumeral {
 				}
 				/* check validation for C symbol */
 				else if( currentSymbol == CHAR_C) {
-					/* I can never being followed by L (IC is invalid) */
-					if(previousChar == CHAR_I) {
+					/* I can never being followed by C or V (IC/VC is invalid)  */
+					if(previousChar == CHAR_I || previousChar == CHAR_V) {
 						isValid = false;
 						break;
 					}
@@ -181,15 +181,15 @@ public class RomanNumeral {
 					}
 					
 					/* check if C only repeated 3 times CCC invalid, use CD instead*/
-					if(currentSymbol == repeatedChar && repeated > 3) {
+					if(currentSymbol == repeatedChar && repeated == 3) {
 						isValid = false;
 						break;
 					}
 				}
 				/* check validation for D symbol */
 				else if( currentSymbol == CHAR_D) {
-					/* I,X and L can never being followed by D (ID/XD/LD is invalid) */
-					if(previousChar == CHAR_I || previousChar == CHAR_X || previousChar == CHAR_L) {
+					/* I,X and L can never being followed by D (ID/VD/XD/LD/DD is invalid) */
+					if(previousChar == CHAR_I || previousChar == CHAR_V || previousChar == CHAR_X || previousChar == CHAR_L || previousChar == CHAR_D) {
 						isValid = false;
 						break;
 					}
@@ -203,7 +203,7 @@ public class RomanNumeral {
 					}
 					
 					/* check if C only repeated 3 times CCC invalid, use CD instead*/
-					if(currentSymbol == repeatedChar && repeated > 3) {
+					if(currentSymbol == repeatedChar && repeated == 3) {
 						isValid = false;
 						break;
 					}					
@@ -211,13 +211,19 @@ public class RomanNumeral {
 				}
 				/* check validation for D symbol */
 				else if( currentSymbol == CHAR_M) {
-					/* I,X, L and D can never being followed by M (IM/XM/LM/DM is invalid) only C can valid */
-					if(previousChar == CHAR_I || previousChar == CHAR_X || previousChar == CHAR_L || previousChar == CHAR_D) {
+					/* I,X, L and D can never being followed by M (IM/VM/XM/LM/DM is invalid) only C can valid */
+					if(previousChar == CHAR_I || previousChar == CHAR_V || previousChar == CHAR_X || previousChar == CHAR_L || previousChar == CHAR_D) {
 						isValid = false;
 						break;
 					}
 					/* check if M only repeated 3 times MMM invalid*/
-					if(currentSymbol == repeatedChar && repeated > 3) {
+					if(currentSymbol == repeatedChar && repeated == 3) {
+						isValid = false;
+						break;
+					}
+				}
+				else if(currentSymbol == CHAR_I) {
+					if(currentSymbol == repeatedChar && repeated == 3) {
 						isValid = false;
 						break;
 					}
