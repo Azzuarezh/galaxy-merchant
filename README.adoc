@@ -48,7 +48,7 @@ It also describe the project properties such as: project name, description, vers
 
 ==== `package.json`
 
-For Front-end configuration file, contains list of javascript library dependencies can be set in this file, JSON formatted file. This file is easier than `pom.xml' because JSON is more readable than xml.
+For Front-end configuration file, contains list of javascript library dependencies can be set in this file, JSON formatted file. This file is easier than `pom.xml` because JSON is more readable than xml.
 
 to download dependencies it can be achieved by running command below:
 
@@ -58,7 +58,7 @@ npm install
 
 It also describe the project properties such as: project name, description, version and execution mode. take a look into this `https://github.com/Azzuarezh/galaxy-merchant/blob/master/package.json[package.json]`
 
-Note that you must install Node JS and NPM (Javascript framework and repository) before running the command above. But don't worry, we will bypass this step as we will only download this library only in this project, the explanation will be described in below section
+Note that you must install Node JS and NPM (Javascript framework and repository) before running the command above. But don't worry, we will bypass this step as we will download this library only on this project rather than we install in the computer, the explanation will be described in below section
 
 = Putting all together
 
