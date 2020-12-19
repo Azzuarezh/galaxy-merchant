@@ -2,7 +2,7 @@
 
 Welcome,
 
-This section shows how to set up Simple Java application named {sourcedir}. Then it shows how to build a simple UI on top of it by using Facebook's React.js toolset.
+This section shows how to set up Simple Java application named galaxy-merchant. Then it shows how to build a simple UI on top of it by using Facebook's React.js toolset.
 This repository aim to be an assignment test for back-end programmer challenge. This demo uses Java 8, Maven Project, and the latest stable release of Spring Boot. 
 It also uses React.js coded in http://es6-features.org/[ES6].
 
