@@ -9,7 +9,7 @@ It also uses React.js coded in http://es6-features.org/[ES6].
 
 = Prerequisites
 
-* Java 8 (prefer JDK to JRE)
+* Java 8 (prefer JDK than JRE)
 * Maven 3
 * Git
 * Any IDE / other text editor compatible for Java development (Eclipse, netbeans, intellij IDEA etc.)
