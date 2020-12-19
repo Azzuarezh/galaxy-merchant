@@ -1,0 +1,37 @@
+= Overview
+
+Welcome,
+
+This section shows how to set up Simple Java application named {sourcedir}. Then it shows how to build a simple UI on top of it by using Facebook's React.js toolset.
+This repository aim to be an assignment test for back-end programmer challenge. This demo uses Java 8, Maven Project, and the latest stable release of Spring Boot. 
+It also uses React.js coded in http://es6-features.org/[ES6].
+
+
+== Prerequisites
+
+* Java 8
+* Maven 3
+* Git
+* Any IDE / other text editor compatible for Java development (Eclipse, netbeans,Jetbrains etc.)
+
+== Get the source code
+Make sure you have already installed git on your computer.
+Clone this https://github.com/Azzuarezh/galaxy-merchant/[repository] with the following steps :
+
+* open command prompt and go to the directory that you want the app to be downloaded.
+* when you have already there, type command below:
+
+....
+git clone https://github.com/Azzuarezh/galaxy-merchant.git
+....
+* Wait until it finished downloading the source, after finished we can go to the IDE or any text editor to open the project. ( make sure the IDE has already integrated with Java)
+
+== Installing Depenencies
+
+This project requires many dependencies library which should be downloaded before it run. 
+The dependencies are categorized by the stack level (front-end and back-end). Each of them have configuration files to configure the project.
+
+=== Back-end dependencies
+==== `pom.xml`
+=== Front-end dependencies
+==== `package.json`
