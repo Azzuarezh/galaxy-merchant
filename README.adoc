@@ -199,6 +199,18 @@ Both method (Via Maven/Jar) will produce the screen similarly like below. Check 
 2020-12-19 20:52:47.109  INFO 12296 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
 ....
 
+= Testing
 
+To see the test report for this app, you can run the following command on command prompt/terminal :
 
+....
+# windows
+mvnw.cmd clean test site
 
+# linux
+./mvnw clean test site
+....
+
+It will produce folder `site` in `target` directory. open `index.html` to see the report. Click `Project Report > Surefire Report` on the left side menu.
+
+If you have any issues regarding to install/running the app, please contact me on mailto:muh.thahir27@gmail.com/[email]
