@@ -54,23 +54,38 @@ export default function CheckPrice (props) {
               setResult({});
               setShown(false);
             }
+          }).catch(error =>{
+            alert("sorry, could not connect to server.")
+            console.log(error)
           });
     }
 
   return (
     <React.Fragment>
       <Title>Check your Items value</Title>
-      <TextField id="filled-basic" label="Input your quotation here ..." variant="filled" value={input} size="small" onChange={handleChange}/>
+      <p>You can enquiry the value of intergalactic numeral to Roman/Numeric and also calculate the total price of materials. <br/>
+      Please follow these example below:</p>
+      <ul>
+        <li>use <code>how much is</code> followed by intergalactic symbols to convert to Roman/Numeric value</li>
+        <li>use <code>how many credits is</code> followed by intergalactic symbols and material name </li>
+        <li>end the sentence with space and quotation mark <code>?</code></li>
+        <li>example using how much is : <code>"how much is pish tegj glob glob ?"</code> without quotes </li>
+        <li>example using how many credits is : <code>"how many credits is pish tegj glob glob silver ?"</code> without quotes </li>
+      </ul>
+
+      <TextField id="filled-basic" label="Input your query here ..." variant="filled" value={input} size="large" onChange={handleChange}/>
       <Button variant="contained" color="primary" size="small" onClick={handleQuery}>
         Go
       </Button>
       <br/>
+       <br/>
       {(show) ? 
       (result.type =='calculate') ?
       <Table size="small">
         <TableHead>
           <TableRow>
             <TableCell>Material</TableCell>
+            <TableCell>Roman Value</TableCell>
             <TableCell>Qty</TableCell>
             <TableCell>Price</TableCell>
             <TableCell>Total</TableCell>
@@ -79,6 +94,7 @@ export default function CheckPrice (props) {
         <TableBody>
           <TableRow>
             <TableCell>{result.material}</TableCell>
+            <TableCell>{result.romanValue}</TableCell>
             <TableCell>{result.numericValue}</TableCell>
             <TableCell>{result.price} Credits</TableCell>
             <TableCell>{result.value} Credits</TableCell>

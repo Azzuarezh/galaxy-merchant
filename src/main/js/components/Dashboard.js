@@ -114,6 +114,20 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 300,
   },
+  materialTable: {
+    padding: theme.spacing(2),
+    display: 'flex',
+    overflow: 'auto',
+    flexDirection: 'column',
+    height:300
+  },
+  checkPrice: {
+    padding: theme.spacing(2),
+    display: 'flex',
+    overflow: 'auto',
+    flexDirection: 'column',
+    height:460
+  },
 }));
 
 export default function Dashboard(props) {
@@ -165,7 +179,7 @@ export default function Dashboard(props) {
 
             {/* Chart */}
             <Grid item xs={12} md={8} lg={8}>
-              <Paper className={fixedHeightPaper}>
+              <Paper className={classes.checkPrice}>
                 <CheckPrice/>
               </Paper>
             </Grid>

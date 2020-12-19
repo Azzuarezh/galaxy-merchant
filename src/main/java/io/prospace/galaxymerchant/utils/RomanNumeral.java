@@ -291,7 +291,7 @@ public class RomanNumeral {
 	
 	
 	
-	/**Explain how conversion works
+	/**Explain how conversion works 
 	 * @param romanText
 	 * @return String explanation on How to calculate the conversion
 	 * @throws InvalidNumericException

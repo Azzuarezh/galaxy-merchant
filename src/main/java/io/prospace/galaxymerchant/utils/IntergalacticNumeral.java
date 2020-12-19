@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import io.prospace.galaxymerchant.utils.RomanNumeral;
 import io.prospace.galaxymerchant.utils.exception.InvalidNumericException;
+import io.prospace.galaxymerchant.utils.exception.NullMaterialException;
 import io.prospace.galaxymerchant.utils.exception.UnrecognizedStringException;
 
 /**
@@ -49,12 +50,13 @@ public class IntergalacticNumeral {
 	 * @return
 	 * @throws UnrecognizedStringException
 	 * @throws InvalidNumericException
+	 * @throws NullMaterialException 
 	 */
-	public static Map<String,Object> checkQuery(String query) throws UnrecognizedStringException, InvalidNumericException{
+	public static Map<String,Object> checkQuery(String query) throws UnrecognizedStringException, InvalidNumericException, NullMaterialException{
 		//variable which will be a response to front end
 		Map<String,Object> resultMap = new HashMap<>();
 		String explanation="";
-		double result= 0;
+		Double result= (double) 0;
 		String romanText="";
 		String type="";
 		String material="";
@@ -155,9 +157,9 @@ public class IntergalacticNumeral {
 		if(!material.isEmpty()) {
 			Map<String,Object> materialMap = new HashMap<>();
 			
-			materialMap.put("Silver", 17.0);
-			materialMap.put("Gold", 14450.0);
-			materialMap.put("Iron", 195.5);
+			materialMap.put("silver", 17.0);
+			materialMap.put("gold", 14450.0);
+			materialMap.put("iron", 195.5);
 			
 			resultMap.put("material", material);
 			resultMap.put("price", materialMap.get(material));
@@ -171,19 +173,21 @@ public class IntergalacticNumeral {
 	 * @param material
 	 * @return
 	 * @throws InvalidNumericException
+	 * @throws NullMaterialException 
 	 */
-	public static double Calculate(String romanQty, String material) throws InvalidNumericException {
+	public static Double Calculate(String romanQty, String material) throws InvalidNumericException, NullMaterialException {
 		System.out.println("romanQty :" + romanQty +", material:" + material);
 		
 		Map<String,Object> materialMap = new HashMap<>();
 		
-		materialMap.put("Silver", 17.0);
-		materialMap.put("Gold", 14450.0);
-		materialMap.put("Iron", 195.5);
+		materialMap.put("silver", 17.0);
+		materialMap.put("gold", 14450.0);
+		materialMap.put("iron", 195.5);
 		
 		double qty = new Double(RomanNumeral.convertRomanTextToInt(IntergalacticNumeral.ConvertIntergatalacticToRoman(romanQty)));
-		double price = (double) materialMap.get(material);
-			
+		
+		Double price = (Double) materialMap.get(material.toLowerCase());
+		if(price == null) throw new NullMaterialException("Material not found!, use \" How much is \" instead");	
 		return qty * price;
 	}
 	
@@ -203,15 +207,16 @@ public class IntergalacticNumeral {
 	 * @param material
 	 * @return
 	 * @throws InvalidNumericException
+	 * @throws NullMaterialException 
 	 */
-	public static String Explain(String romanQty, String material) throws InvalidNumericException {
+	public static String Explain(String romanQty, String material) throws InvalidNumericException, NullMaterialException {
 		System.out.println("romanQty :" + romanQty );
 		
 		Map<String,Object> materialMap = new HashMap<>();
 		
-		materialMap.put("Silver", 17.0);
-		materialMap.put("Gold", 14450.0);
-		materialMap.put("Iron", 195.5);
+		materialMap.put("silver", 17.0);
+		materialMap.put("gold", 14450.0);
+		materialMap.put("iron", 195.5);
 		StringBuilder sb = new StringBuilder();
 		sb.append(RomanNumeral.explanation(IntergalacticNumeral.ConvertIntergatalacticToRoman(romanQty)));
 		sb.append(" * "+ materialMap.get(material));
