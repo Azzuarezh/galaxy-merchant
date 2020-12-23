@@ -134,8 +134,8 @@ see if there is no error message on the screen and we can proceed to go to http:
 The only way to do this is rebuild the project, you can run maven again as mentioned <<Build-and-Run,Above>>. 
 Make sure all of command prompt/terminal related to the project are closed/terminated. Because JAR file will be overwritten, So it need to access the file.
 
-* click <<Cli-Version,this link>> to switch to `CLI Version`.
-* or click <<Web-Version,this link>> to switch to `Web Version`.
+* click <<Cli-Version,this link>> to see how to switch to `CLI Version`.
+* or click <<Web-Version,this link>> to see how to switch to `Web Version`.
 
 
 = #Testing
