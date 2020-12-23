@@ -1,4 +1,4 @@
-= Overview
+= [[Overview]] Overview
 
 Welcome,
 
@@ -7,14 +7,14 @@ This repository aim to be an assignment test for back-end programmer challenge. 
 It also uses React.js coded in http://es6-features.org/[ES6].
 
 
-= Prerequisites
+= [[Prerequisites]]
 
 * Java 8 (prefer JDK than JRE)
 * Maven 3
 * Git
 * Any IDE / other text editor compatible for Java development (Eclipse, netbeans, intellij IDEA etc.)
 
-= Get the source code
+= [[source-code]] Get the source code
 Make sure you have already installed git on your computer.
 Clone this https://github.com/Azzuarezh/galaxy-merchant/[repository] with the following steps :
 
@@ -27,11 +27,11 @@ git clone https://github.com/Azzuarezh/galaxy-merchant.git
 
 * Wait until it finished downloading the source, after finished we can go to the IDE or any text editor to open the project. ( make sure the IDE has already integrated with Java)
 
-= Build and Run the application
+= [[Build-and-Run]] Build and Run the application
 
-there are two Mode for this application. CLI version and Web version. By default, the application will build the CLI version. This section will explain to accomplish both modes.
+This application have two Modes. CLI Mode and Web. By default, the application will build the CLI version. This section will explain to accomplish both modes.
 
-== CLI Version
+== [[CLI-Version]] CLI Version
 
 run maven on command prompt/terminal and type following syntax :
 ....
@@ -42,7 +42,46 @@ mvnw.cmd clean package
 ./mvnw clean package
 ....
 
-== web version
+After finished build the JAR file, go to `target/` folder. It will generate JAR file named `galaxy-merchant-<version>.jar` (the version is based on version tag in `pom.xml` file).
+
+in command prompt/terminal and go to `target` folder then type following command :
+
+....
+java -jar galaxy-merchant-<version>.jar
+....
+
+it will show the screen similar like below :
+
+....
+$ java -jar galaxy-merchant-0.0.1-SNAPSHOT.jar
+      $$$$$$             $$$$$$
+      $   $$             $$$$$$
+      $    $  $$$ $$$$$  $$   $  $$$$$  $$$$$  $$$$  $$$$$
+      $  $$$  $$$ $$ $$  $$$$    $$$$$  $$ $$  $$$$  $$ $$
+      $$$$$$  $$  $$ $$  $$$$$$  $$ $$      $  $$    $   $
+      $       $   $   $     $$$  $   $  $$$$$  $     $$$$$
+      $       $   $$ $$  $$   $  $$ $$  $$$$$  $$    $
+      $       $   $$ $$  $$$$$$  $$ $$  $$$$$  $$$$  $$ $$
+      $       $   $$$$$  $$$$$$  $$$$$  $$$$$  $$$$  $$$$$
+                                 $
+                                 $
+        Inter galactic Converter.
+==================================================
+        Unit Conversion = [glob = I, prok = V, pish = X, tegj = L, sjoice = C, crexs = D, bjork = M]
+        Materials = [Iron, Silver, Gold ]
+
+        use "how much is" or "how many Credits is" then followed by the intergalactic numbers ends with question mark (?)
+        example :       "how much is bjork crexs ?"
+                        "how many Credits is tegj pish pish Silver ?"
+==================================================
+
+
+Enter your input :
+
+....
+
+
+== [[Web-Version]]
 
 run maven on command prompt/terminal and type following syntax :
 ....
@@ -61,9 +100,41 @@ in command prompt/terminal and go to `target` folder then type following command
 java -jar galaxy-merchant-<version>.jar
 ....
 
+it will show the screen like below :
+
+....
+$ java -jar galaxy-merchant-0.0.1-SNAPSHOT.jar
+      $$$$$$             $$$$$$
+      $   $$             $$$$$$
+      $    $  $$$ $$$$$  $$   $  $$$$$  $$$$$  $$$$  $$$$$
+      $  $$$  $$$ $$ $$  $$$$    $$$$$  $$ $$  $$$$  $$ $$
+      $$$$$$  $$  $$ $$  $$$$$$  $$ $$      $  $$    $   $
+      $       $   $   $     $$$  $   $  $$$$$  $     $$$$$
+      $       $   $$ $$  $$   $  $$ $$  $$$$$  $$    $
+      $       $   $$ $$  $$$$$$  $$ $$  $$$$$  $$$$  $$ $$
+      $       $   $$$$$  $$$$$$  $$$$$  $$$$$  $$$$  $$$$$
+                                 $
+                                 $
+2020-12-24 00:30:43.449  INFO 17348 --- [           main] i.p.g.GalaxyMerchantApplication          : Starting GalaxyMerchantApplication v0.0.1-SNAPSHOT using Java 1.8.0_271 on MSI with PID 17348 (D:\java_project\galaxy-merchant\target\galaxy-merchant-0.0.1-SNAPSHOT.jar started by diasp in D:\java_project\galaxy-merchant\target)
+2020-12-24 00:30:43.453  INFO 17348 --- [           main] i.p.g.GalaxyMerchantApplication          : No active profile set, falling back to default profiles: default
+2020-12-24 00:30:44.718  INFO 17348 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-12-24 00:30:44.789  INFO 17348 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 61 ms. Found 1 JPA repository interfaces.
+2020-12-24 00:30:45.223  INFO 17348 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.hateoas.config.HateoasConfiguration' of type [org.springframework.hateoas.config.HateoasConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-24 00:30:45.228  INFO 17348 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'relProviderPluginRegistry' of type [org.springframework.plugin.core.support.PluginRegistryFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-24 00:30:45.236  INFO 17348 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'relProviderPluginRegistry' of type [org.springframework.plugin.core.OrderAwarePluginRegistry] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-24 00:30:45.239  INFO 17348 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean '_relProvider' of type [org.springframework.hateoas.server.core.DelegatingLinkRelationProvider] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-24 00:30:45.248  INFO 17348 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'messageResolver' of type [org.springframework.hateoas.mediatype.MessageSourceResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+....
+
+see if there is no error message on the screen and we can proceed to go to http://localhost:8080/[localhost:8080]
 
 
-= Testing
+= [[switch-app]] Switching from CLI to Web (Vice-versa)
+
+The way to do this only rebuild the project, you can run maven again as mentioned <<Build-and-Run,Above>>
+
+
+= #Testing
 
 To see the test report for this app, you can run the following command on command prompt/terminal :
 
