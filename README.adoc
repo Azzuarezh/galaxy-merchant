@@ -82,6 +82,7 @@ Enter your input :
 
 ....
 
+You can input your text right after `Enter your input :` text above.
 
 == [[Web-Version]] Web Version
 
