@@ -18,32 +18,39 @@ import io.prospace.galaxymerchant.utils.exception.UnrecognizedStringException;
  *
  */
 public class IntergalacticNumeral {
-	public static final String TEXT_GLOB = "glob";
-	public static final String TEXT_PROK = "prok";
-	public static final String TEXT_PISH = "pish";
-	public static final String TEXT_TEGJ = "tegj";
+	public static final String TEXT_GLOB 	= "glob";
+	public static final String TEXT_PROK 	= "prok";
+	public static final String TEXT_PISH 	= "pish";
+	public static final String TEXT_TEGJ 	= "tegj";
+	public static final String TEXT_SJOICE 	= "sjoice";
+	public static final String TEXT_CREXS 	= "crexs";
+	public static final String TEXT_BJORK 	= "bjork";
 	
-	public static final char GLOB = RomanNumeral.CHAR_I;
-	public static final char PROK = RomanNumeral.CHAR_V;
-	public static final char PISH = RomanNumeral.CHAR_X;
-	public static final char TEGJ = RomanNumeral.CHAR_L;
+	public static final char GLOB 	= RomanNumeral.CHAR_I;
+	public static final char PROK 	= RomanNumeral.CHAR_V;
+	public static final char PISH 	= RomanNumeral.CHAR_X;
+	public static final char TEGJ 	= RomanNumeral.CHAR_L;
+	public static final char SJOICE = RomanNumeral.CHAR_C;
+	public static final char CREXS 	= RomanNumeral.CHAR_D; 
+	public static final char BJORK  = RomanNumeral.CHAR_M; 
+	
+	
 	
 	public static final String TYPE_CONVERT ="convert";
 	public static final String TYPE_CALCULATE ="calculate";
 	
 	
 	
-	//	need to define more for hundred, five hundred and thousand
-	//	public static final String ANOTHER_HUNDRED_SYMBOL = RomanNumeral.TEXT_HUNDRED;
-	//	public static final String ANOTHER_FIVE_HUNDERD_SYMBOL = RomanNumeral.TEXT_FIVE_HUNDRED;
-	//	public static final String ANOTHER_THOUSAND_SYMBOL = RomanNumeral.TEXT_THOUSAND;
+	
 	
 	//defines all the words need to be parsed
 	public static String[] materialWords 			= {"Gold", "Silver","Iron" };
 	public static String[] questionWords 			= {"how much is ", "how many credits is "};
-	public static String[] intergalacticWords		= {"glob","prok","pish","tegj"};
+	public static String[] intergalacticWords		= {"glob","prok","pish","tegj", "sjoice","crexs","bjork"};
 	
-
+	public static final String UnregonizeExceptionMessage 	= "I have no Idea what you are talking about";
+	public static final String NullMaterialExecptionMessage = "Material not found!, use \" How much is \" instead"; 
+	
 	
 	/**
 	 * @param query
@@ -62,32 +69,37 @@ public class IntergalacticNumeral {
 		String material="";
 		int numericValue=0;
 		
+		//make sure that the input have question mark at the end of sentence
+		if(query.indexOf('?') < 0) {
+			throw new UnrecognizedStringException(UnregonizeExceptionMessage);
+		}
+		
 		String newQuery ="";
 		/* for how much. this is not required the material word */
 		if(query.toLowerCase().contains(questionWords[0])) {
 			/* get the value words */
-			System.out.println("the sentence contain " + questionWords[0]);
+			//System.out.println("the sentence contain " + questionWords[0]);
 			newQuery = query.replaceAll(questionWords[0], "");
-			System.out.println("remove the "+questionWords[0]+" word, now the sentence is :" + newQuery);
+			//System.out.println("remove the "+questionWords[0]+" word, now the sentence is :" + newQuery);
 			String[] words = newQuery.split(" ");
 			
 			//make sure that the sentence does not contain any invalid words
 			for (String word : words) {
-				System.out.println("current word :" + word);
-				System.out.println("-----------------------");
+				//System.out.println("current word :" + word);
+				//System.out.println("-----------------------");
 				boolean isGalacticWord= false;
 				for (String galacticWord : intergalacticWords) {
-					System.out.println("comparing with " + galacticWord);
+					//System.out.println("comparing with " + galacticWord);
 					if((word.equalsIgnoreCase(galacticWord) || word.equalsIgnoreCase("?"))) {
 						isGalacticWord = true;
-						System.out.println(word +" are equals with " + galacticWord);
+						//System.out.println(word +" are equals with " + galacticWord);
 					}
 				}
-				System.out.println("is galacticWord :" + isGalacticWord);
+				//System.out.println("is galacticWord :" + isGalacticWord);
 				if(!isGalacticWord) {
-					throw new UnrecognizedStringException("I have no Idea what you are talking about");
+					throw new UnrecognizedStringException(UnregonizeExceptionMessage);
 				}
-				System.out.println("-----------------------");
+				//System.out.println("-----------------------");
 			}
 			/* this only convert intergalactic to roman and get the value */
 			result = Calculate(newQuery.replace("?", ""));
@@ -100,40 +112,40 @@ public class IntergalacticNumeral {
 		/* for how many. this is required the material word and we will calculate the value*/
 		else if(query.contains(questionWords[1])){
 			/* get the value words */
-			System.out.println("the sentence contain " + questionWords[1]);
+			//System.out.println("the sentence contain " + questionWords[1]);
 			newQuery = query.replaceAll(questionWords[1], "");
 			String[] words = newQuery.split(" ");
-			System.out.println("remove the "+questionWords[1]+" word, now the sentence is :" + newQuery);
+			//System.out.println("remove the "+questionWords[1]+" word, now the sentence is :" + newQuery);
 			//make sure that the sentence does not contain any invalid words
 			for (String word : words) {
-				System.out.println("current word :" + word);
-				System.out.println("-----------------------");
+				//System.out.println("current word :" + word);
+				//System.out.println("-----------------------");
 				boolean isGalacticWord= false;
 				boolean isMaterialWord=false;
 				for (String galacticWord : intergalacticWords) {
-					System.out.println("comparing with " + galacticWord);
+					//System.out.println("comparing with " + galacticWord);
 					if((word.equalsIgnoreCase(galacticWord) || word.equalsIgnoreCase("?"))) {
-						System.out.println(word +" are equals with " + galacticWord);
+						//System.out.println(word +" are equals with " + galacticWord);
 						isGalacticWord = true;
 					}
 				}
-				System.out.println("is galacticWord :" + isGalacticWord);
+				//System.out.println("is galacticWord :" + isGalacticWord);
 				
 				if(!isGalacticWord) {
 					/* check if it is a material words */
 					for (String materialWord : materialWords) {
-						System.out.println("comparing with " + materialWord);
+						//System.out.println("comparing with " + materialWord);
 						if((word.equalsIgnoreCase(materialWord))) {
 							isMaterialWord = true;
 						}
 						
 					}
-					System.out.println("is materialWord :" + isMaterialWord);
-					if(!isMaterialWord) throw new UnrecognizedStringException("I have no Idea what you are talking about");
+					//System.out.println("is materialWord :" + isMaterialWord);
+					if(!isMaterialWord) throw new UnrecognizedStringException(UnregonizeExceptionMessage);
 					
 				}
 				
-				System.out.println("-----------------------");
+				//System.out.println("-----------------------");
 			}
 			 String materialName = words[words.length -2];  //get last word before question mark			
 			 result =Calculate(newQuery,materialName);
@@ -147,7 +159,7 @@ public class IntergalacticNumeral {
 		}
 		//we don't know the pattern so we will assume that the input is not recognized
 		else {
-			throw new UnrecognizedStringException("I have no Idea what you are talking about");
+			throw new UnrecognizedStringException(UnregonizeExceptionMessage);
 		}
 		resultMap.put("value", result);
 		resultMap.put("explanation", explanation);
@@ -177,7 +189,7 @@ public class IntergalacticNumeral {
 	 * @throws UnrecognizedStringException 
 	 */
 	public static Double Calculate(String romanQty, String material) throws InvalidNumericException, NullMaterialException, UnrecognizedStringException {
-		System.out.println("romanQty :" + romanQty +", material:" + material);
+		//System.out.println("romanQty :" + romanQty +", material:" + material);
 		
 		Map<String,Object> materialMap = new HashMap<>();
 		
@@ -188,7 +200,7 @@ public class IntergalacticNumeral {
 		double qty = new Double(RomanNumeral.convertRomanTextToInt(IntergalacticNumeral.ConvertIntergatalacticToRoman(romanQty)));
 		
 		Double price = (Double) materialMap.get(material.toLowerCase());
-		if(price == null) throw new NullMaterialException("Material not found!, use \" How much is \" instead");	
+		if(price == null) throw new NullMaterialException(NullMaterialExecptionMessage);	
 		return qty * price;
 	}
 	
@@ -199,7 +211,7 @@ public class IntergalacticNumeral {
 	 * @throws UnrecognizedStringException 
 	 */
 	public static double Calculate(String romanQty) throws InvalidNumericException, UnrecognizedStringException {
-		System.out.println("romanQty :" + romanQty );
+		//System.out.println("romanQty :" + romanQty );
 		return new Double(RomanNumeral.convertRomanTextToInt(IntergalacticNumeral.ConvertIntergatalacticToRoman(romanQty)));
 	}
 	
@@ -213,7 +225,7 @@ public class IntergalacticNumeral {
 	 * @throws UnrecognizedStringException 
 	 */
 	public static String Explain(String romanQty, String material) throws InvalidNumericException, NullMaterialException, UnrecognizedStringException {
-		System.out.println("romanQty :" + romanQty );
+		//System.out.println("romanQty :" + romanQty );
 		
 		Map<String,Object> materialMap = new HashMap<>();
 		
@@ -234,7 +246,7 @@ public class IntergalacticNumeral {
 	 * @throws UnrecognizedStringException 
 	 */
 	public static String Explain(String romanQty) throws InvalidNumericException, UnrecognizedStringException {
-		System.out.println("romanQty :" + romanQty );
+		//System.out.println("romanQty :" + romanQty );
 		return RomanNumeral.explanation(IntergalacticNumeral.ConvertIntergatalacticToRoman(romanQty));
 	}
 	
@@ -244,7 +256,7 @@ public class IntergalacticNumeral {
 	 * @return Romanian text format
 	 */
 	public static String ConvertIntergatalacticToRoman(String intergalacticString) throws UnrecognizedStringException {
-		if(intergalacticString.isEmpty()) throw new UnrecognizedStringException("I have no Idea what you are talking about");
+		if(intergalacticString.isEmpty()) throw new UnrecognizedStringException(UnregonizeExceptionMessage);
 		/* we will parse the text based on whitespace character */
 		String[] interGalacticSymbols = intergalacticString.split(" ");
 		
@@ -274,7 +286,16 @@ public class IntergalacticNumeral {
 			break;
 		case TEXT_TEGJ:
 			val = TEGJ;
-			break;		
+			break;
+		case TEXT_SJOICE:
+			val = SJOICE;
+			break;
+		case TEXT_CREXS:
+			val = CREXS;
+			break;
+		case TEXT_BJORK:
+			val = BJORK;
+			break;
 		default:
 			break;
 		}

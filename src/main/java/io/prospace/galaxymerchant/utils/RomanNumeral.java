@@ -8,18 +8,6 @@ import java.util.List;
 
 import io.prospace.galaxymerchant.utils.exception.InvalidNumericException;
 
-/**
- * @author diasp
- *
- * 2020
-
- */
-/**
- * @author diasp
- *
- * 2020
-
- */
 public class RomanNumeral {
 	public static final int ONE 			= 1;
 	public static final int FIVE 			= 5;
@@ -37,6 +25,8 @@ public class RomanNumeral {
 	public static final char CHAR_D 			= 'D';
 	public static final char CHAR_M 			= 'M';
 	
+	
+	public static final String invalidNumericExceptionMessage 	= "Romanial Number not valid!";
 	
 	/** Get Numeral value one character based on Roman character
 	 * @param RomanSymbol <code>String</code> Roman character defines above (I,V,X,L,C,D)
@@ -250,16 +240,16 @@ public class RomanNumeral {
 		return isValid;
 	}
 	
-//	/** Convert Roman text into Numeric value. this will be the function to calculate later
-//	 * @param romanText 
-//	 * @return
-//	 */
+	/** Convert Roman text into Numeric value. this will be the function to calculate later
+	 * @param romanText <code>String</code> Roman Text which will be converted to integer value
+	 * @return <code>integer</code> value of integer based on Roman text given
+	 */
 	public static int convertRomanTextToInt(String romanText) throws InvalidNumericException{
 		int val = 0;
 		int nextVal = 0;
 		
 		if(!(isValidRomanNumeric(romanText))) {
-			throw new InvalidNumericException("Romanial Number not valid!");  
+			throw new InvalidNumericException(invalidNumericExceptionMessage);  
 		}
 		
 		List<Integer> listVal = new ArrayList<>();
@@ -307,7 +297,7 @@ public class RomanNumeral {
 		int nextVal = 0;
 		StringBuilder sb = new StringBuilder();
 		if(!(isValidRomanNumeric(romanText))) {
-			throw new InvalidNumericException("Romanial Number not valid!");  
+			throw new InvalidNumericException(invalidNumericExceptionMessage);  
 		}
 		
 		List<Integer> listVal = new ArrayList<>();

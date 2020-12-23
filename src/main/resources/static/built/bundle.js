@@ -62576,7 +62576,7 @@ function createData(id, IntergalacticUnit, RomanSymbol, Numeric) {
   };
 }
 
-var rows = [createData(0, 'glob', 'I', '1'), createData(1, 'prok', 'V', '5'), createData(2, 'pish', 'X', '10'), createData(3, 'tegj', 'L', '50')];
+var rows = [createData(0, 'glob', 'I', '1'), createData(1, 'prok', 'V', '5'), createData(2, 'pish', 'X', '10'), createData(3, 'tegj', 'L', '50'), createData(3, 'sjoice', 'C', '100'), createData(3, 'crexs', 'D', '500'), createData(3, 'bjork', 'ML', '1000')];
 
 function preventDefault(event) {
   event.preventDefault();
