@@ -81,7 +81,7 @@ Enter your input :
 ....
 
 
-== [[Web-Version]]
+== [[Web-Version]] Web Version
 
 run maven on command prompt/terminal and type following syntax :
 ....
@@ -131,7 +131,11 @@ see if there is no error message on the screen and we can proceed to go to http:
 
 = [[switch-app]] Switching from CLI to Web (Vice-versa)
 
-The way to do this only rebuild the project, you can run maven again as mentioned <<Build-and-Run,Above>>
+The only way to do this is rebuild the project, you can run maven again as mentioned <<Build-and-Run,Above>>. 
+Make sure all of command prompt/terminal related to the project are closed/terminated. Because JAR file will be overwritten, So it need to access the file.
+
+* click <<Cli-Version,this link>> to switch to `CLI Version`.
+* or click <<Web-Version,this link>> to switch to `Web Version`.
 
 
 = #Testing
