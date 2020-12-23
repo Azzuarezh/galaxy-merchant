@@ -27,177 +27,41 @@ git clone https://github.com/Azzuarezh/galaxy-merchant.git
 
 * Wait until it finished downloading the source, after finished we can go to the IDE or any text editor to open the project. ( make sure the IDE has already integrated with Java)
 
-= Installing Dependencies
-
-This project requires many dependencies library which should be downloaded before it run. 
-The dependencies are categorized by the stack level (front-end and back-end). Each of them have configuration files to configure the project.
-
-== Back-end dependencies
-
-==== `pom.xml`
-
-Back-end configuration file for downloading library dependencies can be set in this file. The file is XML formatted. This file will be a reference for maven to download the depenencies. To download the dependencies, use command below:
-
-....
-./mvnw install
-....
-
-It also describe the project properties such as: project name, description, version and packaging mode. take a look into this `https://github.com/Azzuarezh/galaxy-merchant/blob/master/pom.xml[pom.xml]`
-
-== Front-end dependencies
-
-==== `package.json`
-
-For Front-end configuration file, contains list of javascript library dependencies can be set in this file, JSON formatted file. This file is easier than `pom.xml` because JSON is more readable than xml.
-
-to download dependencies it can be achieved by running command below:
-
-....
-npm install
-....
-
-It also describe the project properties such as: project name, description, version and execution mode. take a look into this `https://github.com/Azzuarezh/galaxy-merchant/blob/master/package.json[package.json]`
-
-Note that you must install Node JS and NPM (Javascript framework and repository) before running the command above. But don't worry, we will bypass this step as we will download this library only on this project rather than we install in the computer, the explanation will be described in below section
-
-= Putting all together
-
-Because we don't want all of configuration run separately, there is a dependency in maven that will download front-end application dependency (in this case is node and npm)
-named `frontend-maven-plugin` in `pom.xml`. See the  `<build>` tag.
-....
-<!-- tag::frontend-maven-plugin[] -->
-<plugin>
-  <groupId>com.github.eirslett</groupId>
-      <artifactId>frontend-maven-plugin</artifactId>
-      ...
-</plugin>
-<!-- end::frontend-maven-plugin[] -->
-....
-
-the tag above will be executed when we run maven build. It will download the front-end dependencies to this project.
-
-== Front End Source code
-
-=== Setting up React JS and Webpack
-
-This application use React JS as front-end programming language. Actually, it need to be run in nodeJS server, but we don't want to have 2 servers run simultaneously (Java server and node Server).
-So, there is another way to accomplish solution with one server, we will deploy the react JS script as embedded script to the page. we need to bundle the React JS script into single JS file. The way to do it is generating bundle with webpack JS library. For that requirement, we will add command to run webpack build. it described in `pom.xml` as below:
-
-....
-<plugin>
-  <groupId>com.github.eirslett</groupId>
-      <artifactId>frontend-maven-plugin</artifactId>
-    <executions>
-        <execution>
-            <!-- optional: you don't really need execution ids, but it looks nice in your build log. -->
-            <id>install node and npm</id>
-            <goals>
-                <goal>install-node-and-npm</goal>
-            </goals>
-            <!-- optional: default phase is "generate-resources" -->
-            <phase>generate-resources</phase>
-        </execution>
-
-        <execution>
-            <id>npm install</id>
-            <goals>
-              <goal>npm</goal>
-            </goals>
-            <!-- Optional configuration which provides for running any npm command -->
-            <configuration>
-              <arguments>install</arguments>
-            </configuration>
-          </execution>
-
-          <execution>
-          <id>webpack build</id>
-          <goals>
-              <goal>webpack</goal>
-          </goals>
-
-          <!-- optional: the default phase is "generate-resources" -->
-          <phase>generate-resources</phase>
-      </execution>
-    </executions>
-    <configuration>
-        <nodeVersion>${node.version}</nodeVersion>
-        <!-- optional: with node version greater than 4.0.0 will use npm provided by node distribution -->
-        <npmVersion>${npm.version}</npmVersion>
-    </configuration>
-</plugin>
-<!-- end::frontend-maven-plugin[] -->
-</plugins>
-....
-
-These lines above showing the complete tags build `<plugin>` for frontend-maven plugin. the `<executions>` tag is describe what command to be executed for front-end library.
-
-* 1 execution tag is installing node and npm.
-* 2 downloading dependencies needed for React JS based on `package.json` config.
-* 3 Generating `https://github.com/Azzuarezh/galaxy-merchant/blob/master/src/main/resources/static/built/bundle.js/[built/bundle.js]` for single file js library. This file will be consumed for view in Spring web static.
-
-We need to set where and how we deploy the generated single file from webpack. This require `https://github.com/Azzuarezh/galaxy-merchant/blob/master/webpack.config.js/[webpack.config.js]`.
-This section does not cover explanation for configuring webpack js. To learn about webpack, plase visit https://webpack.js.org/guides/getting-started/[webpack website].
-
-=== Watching changes in React JS script (Optional)
-
-Although this is optional, this help to develop application for maintaining the last changed applied into the server. This goals is for update the `built/bundle.js` everytime
-React JS project folder have changes. It will automatically generate the latest `bundle.js` file.
-
-To run this service, open command prompt and go to project folder, then type command below:
-
-....
-npm run-script watch
-....
-
-it will watch the changes you made in folder `https://github.com/Azzuarezh/galaxy-merchant/blob/master/src/main/js/app.js[src/main/js/app.js]`. Don't close the window if you still make changes to the file `app.js` file.
-
-
 = Build and Run the application
 
-== Run via Maven 
+there are two Mode for this application. CLI version and Web version. By default, the application will build the CLI version. This section will explain to accomplish both modes.
 
-To build and run the application, we need maven installed on the project. Usually on Eclipse, the maven has embedded on the workspace with maven wrapper.
-Open command prompt/terminal and go to the project directory. Type command : `mnvw.cmd spring-boot:run` (for windows)  or `./mvnw spring-boot:run` (for linux).
+== CLI Version
 
-== Run via Jar Package
+run maven on command prompt/terminal and type following syntax :
+....
+# windows
+mvnw.cmd clean package
 
-To build and run the application via JAR package, we need maven to package the project. We will also work with maven wrapper.
-Open command prompt/terminal and go to the project directory. Type command : `mnvw.cmd clean package` (for windows)  or `./mvnw clean package` (for linux).
+# linux
+./mvnw clean package
+....
+
+== web version
+
+run maven on command prompt/terminal and type following syntax :
+....
+# windows
+mvnw.cmd clean package -Pweb
+
+# linux
+./mvnw clean package -Pweb
+....
 
 After finished build the JAR file, go to `target/` folder. It will generate JAR file named `galaxy-merchant-<version>.jar` (the version is based on version tag in `pom.xml` file).
 
-Open command prompt/terminal and go to `target` folder then type followng command :
+in command prompt/terminal and go to `target` folder then type following command :
 
 ....
 java -jar galaxy-merchant-<version>.jar
 ....
 
-Both method (Via Maven/Jar) will produce the screen similarly like below. Check if there is no Error message on the screen, and we can go to `http://localhost:8080/[localhost:8080]` to see the application on the web.
-....
-[INFO] Changes detected - recompiling the module!
-[INFO] Compiling 1 source file to D:\java_project\galaxy-merchant\target\test-classes
-[INFO]
-[INFO] <<< spring-boot-maven-plugin:2.4.1:run (default-cli) < test-compile @ galaxy-merchant <<<
-[INFO]
-[INFO]
-[INFO] --- spring-boot-maven-plugin:2.4.1:run (default-cli) @ galaxy-merchant ---
-[INFO] Attaching agents: []
-      $$$$$$             $$$$$$
-      $   $$             $$$$$$
-      $    $  $$$ $$$$$  $$   $  $$$$$  $$$$$  $$$$  $$$$$
-      $  $$$  $$$ $$ $$  $$$$    $$$$$  $$ $$  $$$$  $$ $$
-      $$$$$$  $$  $$ $$  $$$$$$  $$ $$      $  $$    $   $
-      $       $   $   $     $$$  $   $  $$$$$  $     $$$$$
-      $       $   $$ $$  $$   $  $$ $$  $$$$$  $$    $
-      $       $   $$ $$  $$$$$$  $$ $$  $$$$$  $$$$  $$ $$
-      $       $   $$$$$  $$$$$$  $$$$$  $$$$$  $$$$  $$$$$
-                                 $
-                                 $
-2020-12-19 20:52:47.062  INFO 12296 --- [  restartedMain] i.p.g.GalaxyMerchantApplication          : Starting GalaxyMerchantApplication using Java 1.8.0_171 on MSI with PID 12296 (D:\java_project\galaxy-merchant\target\classes started by diasp in D:\java_project\galaxy-merchant)
-2020-12-19 20:52:47.066  INFO 12296 --- [  restartedMain] i.p.g.GalaxyMerchantApplication          : No active profile set, falling back to default profiles: default
-2020-12-19 20:52:47.108  INFO 12296 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2020-12-19 20:52:47.109  INFO 12296 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-....
+
 
 = Testing
 
