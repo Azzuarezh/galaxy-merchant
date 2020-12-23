@@ -84,6 +84,8 @@ Enter your input :
 
 You can input your text right after `Enter your input :` text above.
 
+if you want to see how to Build CLI version, just see the https://github.com/Azzuarezh/galaxy-merchant/tree/master/video_tutorial[video_tutorial] folder and watch the `CLI version.mp4`.
+
 == [[Web-Version]] Web Version
 
 run maven on command prompt/terminal and type following syntax :
@@ -129,7 +131,8 @@ $ java -jar galaxy-merchant-0.0.1-SNAPSHOT.jar
 2020-12-24 00:30:45.248  INFO 17348 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'messageResolver' of type [org.springframework.hateoas.mediatype.MessageSourceResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
 ....
 
-see if there is no error message on the screen and we can proceed to go to http://localhost:8080/[localhost:8080]
+see if there is no error message on the screen and we can proceed to go to http://localhost:8080/[localhost:8080].
+if you want to see how to Build `Web version`, just see the https://github.com/Azzuarezh/galaxy-merchant/tree/master/video_tutorial[video_tutorial] folder and watch the `Web version.mp4`.
 
 
 = [[switch-app]] Switching from CLI to Web (Vice-versa)
